@@ -28,7 +28,7 @@ export default function Dropzone(props) {
     if (isDisabled) return;
     onFileAdd && onFileAdd(evt.target.files);
   };
-  const text = isHighlight ? 'Drop it!' : 'Click or drag file into this box to upload'
+  const text = isHighlight ? 'Drop it!' : 'Click or drag file into this box to upload';
 
   return (
     <div

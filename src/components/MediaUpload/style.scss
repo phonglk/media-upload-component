@@ -1,3 +1,16 @@
+@mixin hide-flex {
+  flex: 0 0 0px;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+@mixin show-flex($size: auto) {
+  flex: 1 1 $size;
+  width: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
 .media-upload {
   width: 100%;
   min-height: 300px;
@@ -30,15 +43,77 @@
       display: none;
     }
   }
+  &.upload-mode {
+    .toolbar {
+      .upload-status {
+        @include show-flex;
+      }
+      .btn-upload, .compress-image {
+        @include hide-flex;
+      }
+    }
+    &.upload-done {
+      .toolbar {
+        .image-path {
+          @include show-flex;
+          flex: 1 1 auto;
+          height: auto;
+        }
+        .progress {
+          flex: 0 0 10px;
+          height: 10px;
+          .progress-outer .progress-inner {
+            color: rgba(0,0,0,0);
+          }
+        }
+      }
+    }
+  }
   .toolbar {
     display: flex;
     flex: 0 0 30px;
     line-height: 28px;
+    > * {
+      transition: all 0.3s;
+    }
     > button {
       flex: 0 0 50px;
     }
     > div {
       flex: 1 1 auto;
+    }
+    .upload-status {
+      @include hide-flex;
+      flex-direction: column;
+      display: flex;
+      padding: 0 10px;
+      > * {
+        transition: all 0.4s;
+      }
+      .progress {
+        display: flex;
+        .progress-outer {
+          background: #e6f7ff;
+          border: 1px solid #69c0ff;
+          width: 100%;
+          height: 100%;
+          .progress-inner {
+            height: 100%;
+            min-width: 20px;
+            text-align: right;
+            padding-right: 3px;
+            color: white;
+            background-color: #096dd9;
+            transition: all 0.1s;
+          }
+        }
+      }
+      .image-path {
+        @include hide-flex;
+        flex: none;
+        height: 0;
+        display: block;
+      }
     }
     .compress-image {
       display: flex;
@@ -54,14 +129,21 @@
   }
   .preview {
     flex: 1 1 auto;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
     margin-top: 10px;
   }
 
   button {
-    background: white;
+    background: rgb(222,222,222);
     color: black;
+    border: none;
     font-family: Arial, sans-serif;
     font-size: 14px;
+    cursor: pointer;
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
 }

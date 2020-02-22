@@ -22,7 +22,9 @@
     "dev:server": "nodemon server.js",
     "dev:ui": "REACT_APP_UPLOAD_SERVER=http://localhost:8080 yarn start",
     "build": "react-scripts build",
+    "serve": "node server.js",
     "test": "react-scripts test",
+    "lint": "eslint src",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

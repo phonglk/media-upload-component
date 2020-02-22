@@ -56,8 +56,8 @@ export function upload(endpoint, file, onProgress, onDone, onError) {
     }
   })
     .then((resp) => {
-      const path = resp.data.path
-      onDone({ path: endpoint + path })
+      const path = resp.data.path;
+      onDone({ path: endpoint + path });
     })
     .catch(onError);
 }
