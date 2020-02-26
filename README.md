@@ -11,6 +11,7 @@ Demonstrate a simple media upload react component
 
 ## Development
 ```
+yarn
 yarn dev:ui
 yarn dev:server
 ```
@@ -20,6 +21,7 @@ yarn lint
 ```
 ## Build
 ```
+yarn
 yarn build
 yarn serve
 ```
